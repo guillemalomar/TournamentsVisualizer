@@ -16,20 +16,10 @@ class CSVWrapper(object):
         self.csv_name = csv_name
         self.locations = {}
 
-    def create_csv(self, kw=None, parser=None):
+    def create_csv(self):
 
-        if kw and parser:
-            csv_file = self.csv_name[:-4] + '_' + str(parser) + '_' + str(kw) + '.csv'
-            locations = self.sql_wrapper.select_and_kw_by_parser(kw, parser)
-        elif kw:
-            csv_file = self.csv_name[:-4] + '_' + str(kw) + '.csv'
-            locations = self.sql_wrapper.select_by_kw(kw)
-        elif parser:
-            csv_file = self.csv_name[:-4] + '_' + str(parser) + '.csv'
-            locations = self.sql_wrapper.select_by_parser(parser)
-        else:
-            csv_file = self.csv_name
-            locations = self.sql_wrapper.select_all()
+        csv_file = self.csv_name
+        locations = self.sql_wrapper.select_all()
 
         geo_locator = Nominatim(timeout=GEO_TIMEOUT)
         my_file = open(csv_file, 'w')

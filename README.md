@@ -55,13 +55,13 @@ You need to have a running MySQL instance accessible from your machine, and put 
 
 The data in MySQL has to follow the next structure:
 
-|      location      |   keyword   | parserID | total |
-|:------------------:|:-----------:|:--------:|:-----:|
-|    123 Fake St.    |     Lisa    |     2    |   1   |
-|    123 Fake St.    | Bart, Homer |     5    |   2   |
-| Springfield School |   Student   |    103   |  300  |
+|      location      | total |
+|:------------------:|:-----:|
+|    123 Fake St.    |   1   |
+|     Manhattan      |   2   |
+| Springfield School |  300  |
 
-Where **location, keyword, parserID** is the composite primary key.
+Where **location** is the primary key.
 
 #### Python libraries installation
 

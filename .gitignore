@@ -1,7 +1,5 @@
-settings/creds.py
+**/creds.py
 **/*.pyc
 **/__pycache__
 **/.DS_Store
-data/csvs/*
-data/images/*
 logs/*

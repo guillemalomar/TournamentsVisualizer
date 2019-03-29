@@ -39,50 +39,12 @@ class MysqlWrapper(object):
         cursor.execute(select_stmt)
         return cursor.fetchall()
 
-    def select_by_kw(self, kw):
-        select_stmt = "SELECT location, sum(total) FROM " + self.db_n + "." + self.tb_n + " WHERE keyword = \'" + kw + "\' GROUP BY location"
-
-        try:
-            cursor = self.connection.cursor()
-            logging.info(MESSAGES['MYSQL_OBT_SUCC'].format('keyword'))
-        except Exception as exc:
-            logging.info(MESSAGES['MYSQL_OBT_ERR'].format('keyword', exc))
-            raise exc
-
-        cursor.execute(select_stmt)
-        return cursor.fetchall()
-
-    def select_by_parser(self, parser_id):
-        select_stmt = "SELECT location, sum(total) FROM " + self.db_n + "." + self.tb_n + " WHERE parserID = " + str(parser_id) + " GROUP BY location"
-
-        try:
-            cursor = self.connection.cursor()
-            logging.info(MESSAGES['MYSQL_OBT_SUCC'].format('parser'))
-        except Exception as exc:
-            logging.info(MESSAGES['MYSQL_OBT_ERR'].format('parser', exc))
-            raise exc
-
-        cursor.execute(select_stmt)
-        return cursor.fetchall()
-
-    def select_and_kw_by_parser(self, kw, parser_id):
-        select_stmt = "SELECT location, sum(total) FROM " + self.db_n + "." + self.tb_n + " WHERE parserID = " + str(parser_id) + " AND keyword = \'" + kw + "\' GROUP BY location"
-
-        try:
-            cursor = self.connection.cursor()
-            logging.info(MESSAGES['MYSQL_OBT_SUCC'].format('parser'))
-        except Exception as exc:
-            logging.info(MESSAGES['MYSQL_OBT_ERR'].format('parser', exc))
-            raise exc
-
-        cursor.execute(select_stmt)
-        return cursor.fetchall()
 
     def update(self, info):
 
         operation = "BEGIN; " + \
-                    "SELECT total FROM " + self.db_n + "." + self.tb_n + " WHERE parserID = " + str(info[0]) + " AND location = \'" + info[1] + "\' AND keyword = \'" + info[2] + "\' FOR UPDATE;" + \
-                    "UPDATE " + self.db_n + "." + self.tb_n + " SET total = total+1 WHERE parserID = " + str(info[0]) + " AND location = \'" + info[1] + "\' AND keyword = \'" + info[2] + "\';" + \
+                    "SELECT total FROM " + self.db_n + "." + self.tb_n + " WHERE  location = \'" + info[1] + "\' FOR UPDATE;" + \
+                    "UPDATE " + self.db_n + "." + self.tb_n + " SET total = total+1 WHERE location = \'" + info[1] + "\';" + \
                     "COMMIT;"
 
         cursor = self.connection.cursor()
@@ -98,8 +60,8 @@ class MysqlWrapper(object):
             self.insert(info)
 
     def insert(self, info):
-        operation = "INSERT INTO " + self.db_n + "." + self.tb_n + " (parserID, location, keyword, total) " \
-                    "VALUES (" + str(info[0]) + ", \'" + info[1] + "\', \'" + info[2] + "\', 1);"
+        operation = "INSERT INTO " + self.db_n + "." + self.tb_n + " (location, total) " \
+                    "VALUES (" + str(info[0]) + ", 1);"
 
         cursor = self.connection.cursor()
         cursor.execute(operation)
