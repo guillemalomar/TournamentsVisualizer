@@ -1,0 +1,7 @@
+# mini-conda to install basemap
+geopy==1.18.1
+matplotlib==3.0.2
+mysql-connector-python==8.0.14
+mysql-connector-python-rf==2.2.2
+numpy==1.16.0
+pandas==0.24.0
