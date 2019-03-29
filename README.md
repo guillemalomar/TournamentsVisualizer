@@ -41,9 +41,7 @@ It can also be used to generate a map without connecting to a database, but in t
 
 ### Application Architecture
 
-![alt text][logo]
-
-[logo]: Documentation/Diagram.png "Application Architecture"
+<p align="center"><img src="Documentation/Diagram.png" width="420"></p>
 
 ## Using the application
 
