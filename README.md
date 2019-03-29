@@ -141,7 +141,7 @@ Logs can be found in _logs/bubble.log_ (if the folder and file don't exist, will
 ## Comments
 
 - I have tested this application with input files with sizes in the order of MBs, with successful results. I'm not sure how would it perform with files of sizes in the order of GBs.
-- In my production version of the code I have several fields in my MySQL database. In that case, you can add some other methods to the mysql_wrapper to filter by these fields. For this it would be useful to add new application inputs to specify which data you want to plot.
+- In my production version of the code I have several fields in my MySQL database. In that case, you can add some other methods to the mysql_wrapper to filter by these fields. For this it would be useful to add new command line input parameters to specify which data you want to plot.
 
 ## Acknowledgements
 
