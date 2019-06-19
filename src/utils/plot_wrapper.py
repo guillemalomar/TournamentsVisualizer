@@ -18,7 +18,7 @@ def create_plot(text, csv_file_name, image_file_name):
         data = pd.read_csv(csv_file_name, sep=";")
         plt.figure(figsize=(settings.WIDTH_DPI / settings.DPI, settings.HEIGHT_DPI / settings.DPI), dpi=settings.DPI)
 
-        m = Basemap(llcrnrlon=-180, llcrnrlat=-65, urcrnrlon=180, urcrnrlat=80)
+        m = Basemap(llcrnrlon=-11, llcrnrlat=25, urcrnrlon=24, urcrnrlat=65)
         m.drawmapboundary(fill_color='#A6CAE0', linewidth=0)
         m.fillcontinents(color='grey', alpha=0.3)
         m.drawcoastlines(linewidth=0.1, color="white")
@@ -27,9 +27,9 @@ def create_plot(text, csv_file_name, image_file_name):
 
         m.scatter(data['homelon'], data['homelat'], s=data['n'] / 6, alpha=0.4, c=data['labels_enc'], cmap="Set1")
 
-        plt.text(-170, -58,
-                 str(text) + '\n\nPlot created with Python and the Basemap library',
-                 ha='left', va='bottom', size=9, color='#555555')
+        plt.text(-5, 32,
+                 str(text) + '\n\nEuropean Oldschool Tournaments in 2019',
+                 ha='left', va='bottom', size=30, color='#555555')
 
         plt.savefig(image_file_name, bbox_inches='tight')
         logging.info(settings.MESSAGES['MAP_SUCCESS'].format(image_file_name))
