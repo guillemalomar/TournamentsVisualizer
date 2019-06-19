@@ -4,7 +4,7 @@ WIDTH_DPI = 2600
 HEIGHT_DPI = 1800
 
 # Needs to be ≥ 1
-GEO_TIMEOUT = 5
+GEO_TIMEOUT = 10
 
 # Output messages
 MESSAGES = {

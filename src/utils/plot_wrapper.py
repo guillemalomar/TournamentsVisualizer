@@ -23,12 +23,16 @@ def create_plot(text, csv_file_name, image_file_name):
         m.fillcontinents(color='grey', alpha=0.3)
         m.drawcoastlines(linewidth=0.1, color="white")
 
-        data['labels_enc'] = pd.factorize(data['homecontinent'])[0]
+        if data['color'][0] == 'NoRules':
+            data['color'] = pd.factorize(data['homecontinent'])[0]
+            message = ' - All year'
+        else:
+            message = ' - Per month'
 
-        m.scatter(data['homelon'], data['homelat'], s=data['n'] / 6, alpha=0.4, c=data['labels_enc'], cmap="Set1")
+        m.scatter(data['homelon'], data['homelat'], s=data['n'], alpha=0.4, c=data['color'], cmap="Set1")
 
-        plt.text(-5, 28,
-                 str(text) + '\n\nEuropean Oldschool Tournaments in 2019',
+        plt.text(-6, 28,
+                 'Europe\n\nOldschool Tournaments in 2019' + message,
                  ha='left', va='bottom', size=30, color='#555555')
 
         plt.savefig(image_file_name, bbox_inches='tight')
