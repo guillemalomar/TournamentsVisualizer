@@ -39,7 +39,7 @@ class CSVWrapper(object):
                     my_file.write(";".join([self.locations[loc_name][0],
                                             self.locations[loc_name][1],
                                             loc_name,
-                                            str(int(loc_value.real * 100))]) + '\n')
+                                            str(int(loc_value.real * 120))]) + '\n')
                 except Exception as exc:
                     logging.error(MESSAGES['CSV_ERROR'].format(csv_file, exc))
                     raise exc

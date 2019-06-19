@@ -27,7 +27,7 @@ def create_plot(text, csv_file_name, image_file_name):
 
         m.scatter(data['homelon'], data['homelat'], s=data['n'] / 6, alpha=0.4, c=data['labels_enc'], cmap="Set1")
 
-        plt.text(-5, 32,
+        plt.text(-5, 28,
                  str(text) + '\n\nEuropean Oldschool Tournaments in 2019',
                  ha='left', va='bottom', size=30, color='#555555')
 
