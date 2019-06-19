@@ -1,8 +1,8 @@
-# Bubble map creator
+# Tournaments Visualizer
 
-*    Title: Bubble map creator     
+*    Title: Tournaments Visualizer     
 *    Author: Guillem Alomar
-*    Initial release: March 29th, 2019                     
+*    Initial release: June 19th, 2019                     
 *    Code version: 0.1                         
 *    Availability: Public     
 
@@ -33,11 +33,7 @@
 
 ### Explanation
 
-This project is about obtaining values assigned to locations from a local csv file or a MySQL database, and plotting them on a world map. It connects to an external geolocation service to obtain the coordinates from the names of the locations.
-
-The application idea is to obtain data from a MySQL database being feed from another source (this can be a crawler obtaining information about many products that can be found on the internet such as flights, items from ebay or amazon, tweets, facebook posts... It has infinite possibilities).
-
-It can also be used to generate a map without connecting to a database, but in this case you will have to already provide a CSV containing the coordinates and values to be shown.
+This project is about obtaining MTG tournaments data from a local csv file or a MySQL database, and plotting them on a world map. It connects to an external geolocation service to obtain the coordinates from the names of the locations.
 
 ### Application Architecture
 
@@ -53,13 +49,13 @@ You need to have a running MySQL instance accessible from your machine, and put 
 
 The data in MySQL has to follow the next structure:
 
-|      location      | total |
-|:------------------:|:-----:|
-|    123 Fake St.    |   1   |
-|     Manhattan      |   2   |
-| Springfield School |  300  |
+|  name   |         date        |      location     |  rules  | players |
+|:-------:|:-------------------:|:-----------------:|:-------:|:-------:|
+| Noobcon | YYYY-MM-DD 00:00:00 | Gotheburg, Sweden | Swedish |   120   |
+|  LCOS   | YYYY-MM-DD 00:00:00 | Barcelona, Spain  | Swedish |    23   |
+|  LMOS   | YYYY-MM-DD 00:00:00 |  Madrid, Spain    |   EC    |    22   |
 
-Where **location** is the primary key.
+Where **name, date** is the primary key.
 
 #### Python libraries installation
 
