@@ -17,7 +17,7 @@ def create_maps(file=None):
 def args_handler(argv):
 
     p = argparse.ArgumentParser(
-        description='Jobs map creator',
+        description='Tournaments Visualizer',
         formatter_class=argparse.RawTextHelpFormatter
     )
 

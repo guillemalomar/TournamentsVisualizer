@@ -28,7 +28,7 @@ class MysqlWrapper(object):
             raise exc
 
     def select_all(self):
-        select_stmt = "SELECT location, sum(total) FROM " + self.db_n + "." + self.tb_n + " GROUP BY location"
+        select_stmt = "SELECT location, sum(players) FROM " + self.db_n + "." + self.tb_n + " GROUP BY location"
         try:
             cursor = self.connection.cursor()
             logging.info(MESSAGES['MYSQL_OBT_SUCC'].format('global'))
@@ -38,34 +38,6 @@ class MysqlWrapper(object):
 
         cursor.execute(select_stmt)
         return cursor.fetchall()
-
-
-    def update(self, info):
-
-        operation = "BEGIN; " + \
-                    "SELECT total FROM " + self.db_n + "." + self.tb_n + " WHERE  location = \'" + info[1] + "\' FOR UPDATE;" + \
-                    "UPDATE " + self.db_n + "." + self.tb_n + " SET total = total+1 WHERE location = \'" + info[1] + "\';" + \
-                    "COMMIT;"
-
-        cursor = self.connection.cursor()
-
-        insert_one = False
-        for result in cursor.execute(operation, multi=True):
-            if result.with_rows:
-                rows_affected = result.fetchall()
-                if not rows_affected:
-                    insert_one = True
-
-        if insert_one:
-            self.insert(info)
-
-    def insert(self, info):
-        operation = "INSERT INTO " + self.db_n + "." + self.tb_n + " (location, total) " \
-                    "VALUES (" + str(info[0]) + ", 1);"
-
-        cursor = self.connection.cursor()
-        cursor.execute(operation)
-        self.connection.commit()
 
     def close(self):
         self.connection.close()
